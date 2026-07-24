@@ -26,3 +26,6 @@ See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md), [`docs/RULE_ENGINE.md`](docs
 Additional references: [API](docs/API.md) · [Developer guide](docs/DEVELOPER_GUIDE.md)
 
 Dependency policy and verification: [docs/DEPENDENCY_COMPATIBILITY.md](docs/DEPENDENCY_COMPATIBILITY.md)
+
+## Local opponent
+The player controls White. Every accepted White move is immediately followed by a server-side Black reply from the rule-aware local opponent. It uses the identical filtered legal move set as the player, preferring checkmate, checks, favorable captures, and centralization. This guarantees active custom rules apply to both sides.

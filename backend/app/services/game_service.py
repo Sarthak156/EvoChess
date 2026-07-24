@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from ..db.models import Player,Match,PlayerMetric,PolicyEpisode
 from ..chess_engine.engine import AdaptiveGame,GameError
 from ..features.extractor import extract,vector
+from ..chess_engine.opponent import choose_move
 from ..rl.selector import RuleSelector
 def profile(db:Session,pid:int)->dict:
  rows=db.query(PlayerMetric).filter_by(player_id=pid).all()
@@ -22,7 +23,15 @@ def state(m:Match):
 def play(db:Session,mid:int,uci:str,elapsed:int):
  m=db.get(Match,mid)
  if not m or m.status!='active':raise GameError('Active match not found.')
- g=load(m);g.move(uci,elapsed);m.moves=g.move_log;m.result=g.outcome()
+ g=load(m)
+ # The local profile controls White. After a valid player move, Black responds in
+ # the same request using the rule-aware local opponent.
+ if not g.board.turn: raise GameError('It is the adaptive opponent’s turn.')
+ g.move(uci,elapsed)
+ if g.outcome()=='*' and not g.board.turn:
+  reply=choose_move(g)
+  if reply: g.move(reply,0)
+ m.moves=g.move_log;m.result=g.outcome()
  if m.result!='*':
   m.status='finished';m.ended_at=datetime.utcnow();metrics=extract(m.moves,m.result);db.add(PlayerMetric(player_id=m.player_id,match_id=m.id,values=metrics));reward=0.4+min(len(m.moves)/100,0.3)+(0.2 if m.result=='1/2-1/2' else .1);db.add(PolicyEpisode(player_id=m.player_id,rule_ids=m.active_rules,reward=reward,state=vector(metrics)))
  db.commit();db.refresh(m);return state(m)
