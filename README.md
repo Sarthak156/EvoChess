@@ -22,3 +22,5 @@ Open `http://localhost:5173`; Swagger API docs are at `http://localhost:8000/doc
 See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md), [`docs/RULE_ENGINE.md`](docs/RULE_ENGINE.md), and [`docs/TRAINING.md`](docs/TRAINING.md).
 
 Additional references: [API](docs/API.md) · [Developer guide](docs/DEVELOPER_GUIDE.md)
+
+Dependency policy and verification: [docs/DEPENDENCY_COMPATIBILITY.md](docs/DEPENDENCY_COMPATIBILITY.md)
