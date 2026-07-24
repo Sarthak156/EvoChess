@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+*.pyc
+adaptive_chess.db
+saved_models/*.zip
+frontend/node_modules/

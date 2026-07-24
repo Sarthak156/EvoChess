@@ -1,0 +1,2 @@
+# RL training
+Completed games produce a normalized behavioral vector, selected rule IDs and reward. Reward favours meaningful duration, balanced draws and policy-compatible strategic variety. Run `PYTHONPATH=backend python scripts/train.py` to train PPO and save `saved_models/ppo_rule_selector.zip`. The current selector is intentionally explainable heuristic bootstrapping; replace its scoring call with `PPO.load(...).predict(state)` once enough episodes exist. The Gym environment API is isolated so DQN can be introduced without changing game or API code.
