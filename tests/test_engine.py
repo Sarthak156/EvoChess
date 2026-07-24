@@ -1,7 +1,7 @@
 import sys;sys.path.append('backend')
 import chess
 from app.chess_engine.engine import AdaptiveGame,GameError
-from app.chess_engine.rules import RuleEngine
+from app.chess_engine.engine import RuleEngine
 def test_heavy_pawn_blocks_double_push():
  g=AdaptiveGame([4])
  try:g.move('e2e4');assert False

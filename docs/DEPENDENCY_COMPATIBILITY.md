@@ -6,6 +6,8 @@ Use a clean virtual environment and run these commands in CI and before releases
 ```bash
 python -m pip install --upgrade pip
 pip install -r requirements.txt
+# For PPO training:
+pip install -r requirements-ml.txt
 pip check
 PYTHONPATH=backend pytest tests -q
 ```

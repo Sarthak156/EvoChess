@@ -1,6 +1,9 @@
 import sys;sys.path.append('backend')
-from fastapi.testclient import TestClient
+import asyncio
+import httpx
 from app.main import app
-c=TestClient(app)
-def test_health():assert c.get('/health').json()['status']=='ok'
-def test_rules():assert len(c.get('/api/rules').json())==20
+async def request(path:str):
+ transport=httpx.ASGITransport(app=app)
+ async with httpx.AsyncClient(transport=transport,base_url='http://test') as client:return await client.get(path)
+def test_health():assert asyncio.run(request('/health')).json()['status']=='ok'
+def test_rules():assert len(asyncio.run(request('/api/rules')).json())==20

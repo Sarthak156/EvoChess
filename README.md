@@ -5,6 +5,8 @@ A full-stack adaptive chess application: it learns **which pre-match rule modifi
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
+# Optional ML training dependencies (CPU PyTorch wheels)
+pip install -r requirements-ml.txt
 PYTHONPATH=backend uvicorn app.main:app --reload
 # another terminal
 cd frontend && npm install && npm run dev
