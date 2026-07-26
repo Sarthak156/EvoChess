@@ -8,5 +8,7 @@ configure_logging();Base.metadata.create_all(engine)
 app=FastAPI(title=settings.app_name,version='1.0.0',description='Adaptive rules chess API')
 app.add_middleware(CORSMiddleware,allow_origins=settings.cors_origins,allow_credentials=True,allow_methods=['*'],allow_headers=['*'])
 app.include_router(router)
+@app.get('/')
+def root():return {'app':settings.app_name,'version':'1.0.0','status':'ok'}
 @app.get('/health')
 def health():return {'status':'ok'}
