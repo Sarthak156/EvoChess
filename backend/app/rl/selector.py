@@ -1,7 +1,7 @@
 from __future__ import annotations
 import random
-from ..chess_engine.rules import RULES,INCOMPATIBLE
-from ..features.extractor import vector
+from app.chess_engine.rules import RULES,INCOMPATIBLE
+from app.features.extractor import vector
 class RuleSelector:
  def select(self,metrics:dict,previous:list[int]|None=None)->tuple[list[int],str]:
   # Explainable baseline policy; PPO training can replace scoring without changing API.

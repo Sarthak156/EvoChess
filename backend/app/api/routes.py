@@ -1,11 +1,11 @@
 from fastapi import APIRouter,Depends,HTTPException
 from sqlalchemy.orm import Session
-from ..db.session import get_db
-from ..db.models import Player,Match,PlayerMetric,PolicyEpisode
-from ..schemas.contracts import *
-from ..services.game_service import start,play,state,profile
-from ..chess_engine.rules import RULES
-from ..chess_engine.engine import GameError
+from app.db.session import get_db
+from app.db.models import Player,Match,PlayerMetric,PolicyEpisode
+from app.schemas.contracts import *
+from app.services.game_service import start,play,state,profile
+from app.chess_engine.rules import RULES
+from app.chess_engine.engine import GameError
 router=APIRouter(prefix='/api')
 def err(e):raise HTTPException(400,str(e))
 @router.post('/players',response_model=PlayerOut)

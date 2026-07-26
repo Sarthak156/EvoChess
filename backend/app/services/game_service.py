@@ -1,10 +1,10 @@
 from datetime import datetime
 from sqlalchemy.orm import Session
-from ..db.models import Player,Match,PlayerMetric,PolicyEpisode
-from ..chess_engine.engine import AdaptiveGame,GameError
-from ..features.extractor import extract,vector
-from ..chess_engine.opponent import choose_move
-from ..rl.selector import RuleSelector
+from app.db.models import Player,Match,PlayerMetric,PolicyEpisode
+from app.chess_engine.engine import AdaptiveGame,GameError
+from app.features.extractor import extract,vector
+from app.chess_engine.opponent import choose_move
+from app.rl.selector import RuleSelector
 def profile(db:Session,pid:int)->dict:
  rows=db.query(PlayerMetric).filter_by(player_id=pid).all()
  if not rows:return {}

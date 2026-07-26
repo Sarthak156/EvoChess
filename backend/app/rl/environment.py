@@ -1,7 +1,7 @@
 import gymnasium as gym
 from gymnasium import spaces
 import numpy as np
-from ..features.extractor import FEATURE_NAMES
+from app.features.extractor import FEATURE_NAMES
 class RuleSelectionEnv(gym.Env):
  """Offline contextual bandit: action encodes 20 choose 1..3 legal presets."""
  metadata={'render_modes':[]}
