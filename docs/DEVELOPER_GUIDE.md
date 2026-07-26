@@ -7,7 +7,7 @@ cd frontend && npm run build
 ```
 
 ## Extension boundaries
-- Put a new rules plugin in `backend/app/chess_engine/rules.py` (or split it into a module), register it in `RULES`, then add an incompatibility constraint and tests.
+- Put a new rules plugin in `backend/chess_engine/rules.py` (or split it into a module), register it in `RULES`, then add an incompatibility constraint and tests.
 - Keep API handlers thin. Lifecycle/database work belongs in `services/game_service.py`.
 - A state feature must be added to `FEATURE_NAMES`; this makes vector ordering explicit and reproducible.
 - Database migrations should be introduced with Alembic for production PostgreSQL deployments.
